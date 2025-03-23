@@ -7,11 +7,12 @@
 
 enum key_sort
 {
-    k_surname = 1,
+    k_name,
+    k_surname,
     k_phone
 };
 
-typedef std::pair<std::string, std::string> name_phone;
+typedef std::pair<std::string, std::string> pair_data;
 typedef std::vector<std::string> vec_str;
 typedef std::map<std::string, std::string> map_list;
 
@@ -19,7 +20,7 @@ class Parser
 {
     std::string delimeter_;
     key_sort sort_value;
-    name_phone split(const std::string &s);
+    pair_data split(const std::string &s);
     map_list res_value;
 
 public:

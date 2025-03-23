@@ -12,16 +12,26 @@ map_list Parser::parser(const vec_str &v_list)
     return res_value;
 }
 
-name_phone Parser::split(const std::string &s)
+pair_data Parser::split(const std::string &s)
 {
-    size_t pos = 0;
-    pos = s.find(delimeter_);
-    string surname = s.substr(0, pos);
-    string phone = s.substr(pos + 1, s.length());
-    // int number = std::stoi(s.substr(pos + 1, s.length()));
+    int i = 0;
+    size_t pos_start = 0, pos_end = 0;
+    vec_str temp;
+    while ((pos_end = s.find(delimeter_, pos_start)) != std::string::npos)
+    {
+        if (i == 1)
+            temp.push_back(s.substr(pos_start, pos_end - pos_start - 1));
+        else
+            temp.push_back(s.substr(pos_start, pos_end - pos_start));
+        pos_start = pos_end + delimeter_.length();
+        i++;
+    }
+    temp.push_back(s.substr(pos_start, s.length() - pos_start));
 
-    if (sort_value == k_surname)
-        return name_phone(surname, phone);
+    if (sort_value == k_name)
+        return pair_data(temp[0], s);
+    else if (sort_value == k_surname)
+        return pair_data(temp[1], s);
     else if (sort_value == k_phone)
-        return name_phone(phone, surname);
+        return pair_data(temp[2], s);
 }
