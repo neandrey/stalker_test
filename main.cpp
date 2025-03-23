@@ -21,6 +21,7 @@ int main()
     catch (const runtime_error &e)
     {
         cout << e.what() << endl;
+        return 1;
     }
 
     int number;
