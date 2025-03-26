@@ -1,16 +1,6 @@
 #ifndef PARSER_H
 #define PARSER_H
 #include "project_data.h"
-// #include <vector>
-// #include <string>
-#include <utility>
-// #include <map>
-// #include <functional>
-
-// typedef std::pair<std::string, std::string> pair_data_t;
-// typedef std::vector<std::string> vector_str_t;
-// typedef std::multimap<std::string, std::string> l_multimap;
-// typedef std::multimap<std::string, std::string> l_multimap;
 
 class Parser
 {
