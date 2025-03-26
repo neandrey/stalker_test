@@ -48,6 +48,7 @@ int main()
 
 // для сортировки в обратном порядке (ошибка)
 //------------------------------------------------------
+// FIXME
 void print_map(multimap_str_t &m_map, sort_key s_key)
 {
     if (s_key == sk_phone)
