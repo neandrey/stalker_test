@@ -6,7 +6,9 @@ using namespace std;
 
 int get_number(int, int, const string &);
 sort_key int_to_sort_key(int);
-void print_map(multimap_str_t &, sort_key);
+
+template <typename T>
+void print_map(const T &);
 
 int main()
 {
@@ -36,31 +38,32 @@ int main()
 
     Parser pr(SYMB_DELIMETER, s_key);
 
-    multimap_str_t m_map;
+    map_str_t m_str;
+    map_int_t m_int;
 
     // create_map
-    for (auto v : pr.parser(v_data))
-        m_map.insert({v.first, v.second});
+    if (s_key == sort_key::sk_phone)
+        for (auto v : pr.parser(v_data))
+            m_int.insert({std::stoi(v.first), v.second});
+    else
+        for (auto v : pr.parser(v_data))
+            m_str.insert({v.first, v.second});
 
     // print_value
-    print_map(m_map, s_key);
+    if (s_key == sort_key::sk_phone)
+        print_map(m_int);
+    else
+        print_map(m_str);
 }
 
 // для сортировки в обратном порядке (ошибка)
 //------------------------------------------------------
 // FIXME
-void print_map(multimap_str_t &m_map, sort_key s_key)
+template <typename T>
+void print_map(const T &m_map)
 {
-    if (s_key == sk_phone)
-    {
-        for (auto it = m_map.rbegin(); it != m_map.rend(); ++it)
-            cout << it->second << endl;
-    }
-    else
-    {
-        for (const auto s : m_map)
-            cout << s.second << endl;
-    }
+    for (const auto s : m_map)
+        cout << s.second << endl;
 }
 //------------------------------------------------------------------------
 /**

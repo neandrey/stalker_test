@@ -14,7 +14,6 @@ class Parser
 
     std::string delimeter_;
     sort_key sort_value;
-    // l_multimap res_multimap;
 
     // help_func
     vector_str_t split(const std::string &s);
