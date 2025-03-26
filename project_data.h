@@ -3,11 +3,12 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <functional>
 
 typedef std::pair<std::string, std::string> pair_data_t;
 typedef std::vector<std::string> vector_str_t;
-typedef std::multimap<std::string, std::string> multimap_str_t;
 typedef std::vector<pair_data_t> vector_pair_t;
+typedef std::multimap<std::string, std::string> multimap_str_t;
 
 #define FILENAME "test.txt"
 #define SYMB_DELIMETER " "

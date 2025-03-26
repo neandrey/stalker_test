@@ -6,6 +6,7 @@ using namespace std;
 
 int get_number(int, int, const string &);
 sort_key int_to_sort_key(int);
+void print_map(multimap_str_t &, sort_key);
 
 int main()
 {
@@ -37,14 +38,30 @@ int main()
 
     multimap_str_t m_map;
 
+    // create_map
     for (auto v : pr.parser(v_data))
         m_map.insert({v.first, v.second});
 
     // print_value
-    for (const auto s : m_map)
-        cout << s.second << endl;
+    print_map(m_map, s_key);
 }
 
+// для сортировки в обратном порядке (ошибка)
+//------------------------------------------------------
+void print_map(multimap_str_t &m_map, sort_key s_key)
+{
+    if (s_key == sk_phone)
+    {
+        for (auto it = m_map.rbegin(); it != m_map.rend(); ++it)
+            cout << it->second << endl;
+    }
+    else
+    {
+        for (const auto s : m_map)
+            cout << s.second << endl;
+    }
+}
+//------------------------------------------------------------------------
 /**
  * @brief ввод числа для сортировки
  *
