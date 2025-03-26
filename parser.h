@@ -1,21 +1,14 @@
 #ifndef PARSER_H
 #define PARSER_H
+#include "project_data.h"
 #include <vector>
 #include <string>
 #include <utility>
 #include <map>
 
-typedef std::pair<std::string, std::string> pair_data;
-typedef std::vector<std::string> vector_str;
+typedef std::pair<std::string, std::string> pair_data_t;
+typedef std::vector<std::string> vector_str_t;
 typedef std::multimap<std::string, std::string> l_multimap;
-
-// данные для сортировке
-enum sort_key
-{
-    sk_name = 1,
-    sk_surname,
-    sk_phone
-};
 
 class Parser
 {
@@ -32,16 +25,15 @@ class Parser
     l_multimap res_multimap;
 
     // help_func
-    vector_str split(const std::string &s);
-    pair_data choice_sort(const vector_str &v);
-    std::string forming_string(const vector_str &, int, int, int);
-    sort_key int_to_sort_key(int);
+    vector_str_t split(const std::string &s);
+    pair_data_t key_and_data(const vector_str_t &v);
+    std::string forming_string(const vector_str_t &, int, int, int);
 
 public:
-    Parser(const std::string &delimeter, int sort_value = (int)sk_name)
+    Parser(const std::string &delimeter, sort_key sort_value = sk_name)
         : delimeter_(delimeter),
-          sort_value(int_to_sort_key(sort_value)) {}
-    l_multimap parser(const vector_str &v_list);
+          sort_value(sort_value) {}
+    vector_pair_t parser(const vector_str_t &v_list);
 };
 
 #endif
