@@ -10,18 +10,34 @@ ReadFile::ReadFile(const string &filename)
         throw runtime_error("Не удалось откртыть файл " + filename);
 }
 
+/**
+ * @brief Закрытие файла
+ *
+ */
 void ReadFile::close()
 {
     if (in.is_open())
         in.close();
 }
 
+/**
+ * @brief Открыте файла
+ *
+ * @param filename
+ * @return true
+ * @return false
+ */
 bool ReadFile::open(const string &filename)
 {
     in.open(filename);
     return (is_open()) ? false : true;
 }
 
+/**
+ * @brief Чтение данных из файла
+ *
+ * @return vector<string>
+ */
 vector<string> ReadFile::readlines()
 {
     vector<string> res;
